@@ -25,7 +25,7 @@ $prog = ($total > 0) ? round(($s['Completed'] / $total) * 100) : 0;
 $host = getenv('MYSQLHOST') ?: 'localhost';
 $user = getenv('MYSQLUSER') ?: 'root';
 $pass = getenv('MYSQLPASSWORD') ?: '';
-$db   = getenv('MYSQLDATABASE') ?: 'todo_db';
+$db   = getenv('MYSQLDATABASE') ?: 'todo_bd';
 $port = getenv('MYSQLPORT') ?: '3306';
 
 $conn = new mysqli($host, $user, $pass, $db, $port);
@@ -131,3 +131,4 @@ if ($conn->connect_error) {
 </body>
 
 </html>
+
