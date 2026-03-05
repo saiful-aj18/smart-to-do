@@ -19,6 +19,21 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
+<?php
+// Railway provides these variables automatically once you add a MySQL service
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: '';
+$db   = getenv('MYSQLDATABASE') ?: 'todo_bd';
+$port = getenv('MYSQLPORT') ?: '3306';
+
+$conn = new mysqli($host, $user, $pass, $db, $port);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>    
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,4 +50,5 @@ if (isset($_POST['register'])) {
         <p class="mt-4 text-center text-sm">Already have an account? <a href="login.php" class="text-indigo-600 font-bold">Login</a></p>
     </form>
 </body>
+
 </html>
