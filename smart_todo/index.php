@@ -20,6 +20,20 @@ while($r = $res->fetch_assoc()) $s[$r['status']] = $r['c'];
 $total = $s['Pending'] + $s['Completed'];
 $prog = ($total > 0) ? round(($s['Completed'] / $total) * 100) : 0;
 ?>
+<?php
+// Railway provides these variables automatically once you add a MySQL service
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: '';
+$db   = getenv('MYSQLDATABASE') ?: 'todo_db';
+$port = getenv('MYSQLPORT') ?: '3306';
+
+$conn = new mysqli($host, $user, $pass, $db, $port);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -115,4 +129,5 @@ $prog = ($total > 0) ? round(($s['Completed'] / $total) * 100) : 0;
     });
 </script>
 </body>
+
 </html>
